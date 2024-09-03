@@ -3,8 +3,11 @@ import "../../../styles/map.css";
 import MapContainer from "../../../components/map/MapContainer";
 import TileLayer from "../../../components/map/TileLayer";
 import useGeoLocation from "../../../hooks/useGeoLocation";
+import { Outlet, useLocation } from "react-router-dom";
 const Map01 = () => {
   const { loading, position } = useGeoLocation();
+  const location = useLocation();
+  const path = location.pathname.split("/");
   const code = `
   <MapContainer id="map_1" center={position}>
     <TileLayer
@@ -14,27 +17,33 @@ const Map01 = () => {
   </MapContainer>
   `;
   return (
-    <main>
-      <hgroup>
-        <h3>01 Map</h3>
-        <p></p>
-      </hgroup>
-      <section>
-        <h4>기본 지도 불러오기</h4>
-        <div style={{ width: `100%`, height: `50vh` }}>
-          {!loading && (
-            <MapContainer id="map_1" center={position}>
-              <TileLayer
-                id="map_1"
-                url={"https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
-                attribution={"01"}
-              />
-            </MapContainer>
-          )}
-        </div>
-        <SyntaxHighlighter language="jsx">{code}</SyntaxHighlighter>
-      </section>
-    </main>
+    <>
+      {path[3] ? (
+        <Outlet />
+      ) : (
+        <main>
+          <hgroup>
+            <h3>01 Map</h3>
+            <p></p>
+          </hgroup>
+          <section>
+            <h4>기본 지도 불러오기</h4>
+            <div style={{ width: `100%`, height: `50vh` }}>
+              {!loading && (
+                <MapContainer id="map_1" center={position}>
+                  <TileLayer
+                    id="map_1"
+                    url={"https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
+                    attribution={"01"}
+                  />
+                </MapContainer>
+              )}
+            </div>
+            <SyntaxHighlighter language="jsx">{code}</SyntaxHighlighter>
+          </section>
+        </main>
+      )}
+    </>
   );
 };
 

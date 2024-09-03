@@ -17,6 +17,20 @@ import PieChart from "./pages/chartjs/PieChart";
 import PolarAreaChart from "./pages/chartjs/PolarAreaChart";
 import RadarChart from "./pages/chartjs/RadarChart";
 import ScatterChart from "./pages/chartjs/ScatterChart";
+import Map01 from "./pages/map/01";
+import Map0101 from "./pages/map/01/01";
+import Map0102 from "./pages/map/01/02";
+import Map0103 from "./pages/map/01/03";
+import Map0201 from "./pages/map/02/01";
+import Map0202 from "./pages/map/02/02";
+import Map0203 from "./pages/map/02/03";
+import Map0301 from "./pages/map/03/01";
+import Map0302 from "./pages/map/03/02";
+import Map0401 from "./pages/map/04/01";
+import Map0402 from "./pages/map/04/02";
+import Map03 from "./pages/map/03";
+import Map02 from "./pages/map/02";
+import Map04 from "./pages/map/04";
 
 const router = createBrowserRouter([
   {
@@ -95,7 +109,42 @@ const router = createBrowserRouter([
       {
         path: "map",
         element: <Map />,
-        // children: [{}],
+        children: [
+          {
+            path: "01",
+            element: <Map01 />,
+            children: [
+              { path: "1", element: <Map0101 /> },
+              { path: "2", element: <Map0102 /> },
+              { path: "3", element: <Map0103 /> },
+            ],
+          },
+          {
+            path: "02",
+            element: <Map02 />,
+            children: [
+              { path: "1", element: <Map0201 /> },
+              { path: "2", element: <Map0202 /> },
+              { path: "3", element: <Map0203 /> },
+            ],
+          },
+          {
+            path: "03",
+            element: <Map03 />,
+            children: [
+              { path: "1", element: <Map0301 /> },
+              { path: "2", element: <Map0302 /> },
+            ],
+          },
+          {
+            path: "04",
+            element: <Map04 />,
+            children: [
+              { path: "1", element: <Map0401 /> },
+              { path: "2", element: <Map0402 /> },
+            ],
+          },
+        ],
       },
     ],
   },
