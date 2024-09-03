@@ -1,0 +1,77 @@
+ a {
+     color: inherit;
+     text-decoration: none;
+ }
+
+ .link {
+     display: block;
+     border: 1px solid #dbdbdb;
+     /* border-radius: 0.5rem; */
+     background-color: #dbdbdb;
+     padding: 0.5rem;
+     margin: 0.5rem;
+ }
+
+ .link:hover {
+     cursor: pointer;
+     background-color: rgb(147, 147, 147);
+     color: white;
+ }
+
+ .block {
+     display: block;
+ }
+
+ .layout {
+     display: flex;
+ }
+
+ .resize-sidebar {
+     min-width: 300px;
+     flex-shrink: 0;
+ }
+
+ .divisor {
+     /* height: 80vh; */
+     width: 10px;
+     flex-shrink: 0;
+     background-color: #ccc;
+     cursor: ew-resize;
+ }
+
+ button {
+     padding: 0.5rem;
+     margin: 0.5rem;
+     border: 1px solid #ccc;
+     background-color: white;
+     border-radius: 0.5rem;
+ }
+
+ button:hover {
+     background-color: #ccc;
+     cursor: pointer;
+ }
+
+ hgroup {
+     border-bottom: 1px solid #ccc;
+     margin-bottom: 1rem;
+ }
+
+ form {
+     background-color: #e8e8e8;
+     padding: 0.5rem;
+     margin: 0.5rem;
+     width: fit-content;
+ }
+
+ label {
+     display: block;
+     margin: 0.5rem;
+ }
+
+ input {
+     border: 1px solid #ccc;
+     border-radius: 0.5rem;
+     padding: 0.5rem;
+     min-height: 1.5rem;
+ }
