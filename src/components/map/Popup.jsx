@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import usePopup from "../../hooks/usePopup";
 import useMapEvent from "../../hooks/useMapEvent";
 
+// eslint-disable-next-line react/prop-types
 const Popup = ({ id, latlng, children, popupoptions = {}, open, ...props }) => {
   const { createPopup, updatePopup, deletePopup, isIncludePopup } = usePopup();
 
@@ -9,6 +10,13 @@ const Popup = ({ id, latlng, children, popupoptions = {}, open, ...props }) => {
 
   useMapEvent(
     "popupclose",
+    () => {
+      updatePopup(id, latlng, children, popupoptions, !open);
+    },
+    [popup]
+  );
+  useMapEvent(
+    "popupopen",
     () => {
       updatePopup(id, latlng, children, popupoptions, !open);
     },

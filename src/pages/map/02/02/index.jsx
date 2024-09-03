@@ -147,9 +147,6 @@ export default usePopup;
               }
               attribution={"02"}
             />
-            {/* <PopupMarker id="marker_popup" latlng={position} popup open>
-              popup ? tooltip
-            </PopupMarker> */}
             <Popup id="popup-1" className="popup" latlng={position} open>
               popup
             </Popup>

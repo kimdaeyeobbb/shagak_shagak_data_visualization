@@ -19,28 +19,16 @@ const CustomMarker = ({
     : undefined;
 
   useEffect(() => {
-    let newMarker;
+    if (iconUrl) deleteMarker(id);
 
     if (isIncludeMarker(id))
-      newMarker = updateMarker(id, [lat, lng], {
+      updateMarker(id, [lat, lng], {
         ...markerOptions,
       });
     else
-      newMarker = createMarker(id, [lat, lng], {
+      createMarker(id, [lat, lng], {
         ...markerOptions,
       });
-
-    //popup 또는 tooltip 추가
-    if (children) {
-      if (typeof children !== "string" && children.length > 0) {
-        children.map((child) => {
-          if (child.type?.name === "Popup") newMarker.marker.bindPopup(child);
-          else newMarker.marker.bindTooltip(child);
-        });
-      } else {
-        newMarker.marker.bindTooltip(children);
-      }
-    }
 
     return () => {
       deleteMarker(id);

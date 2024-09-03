@@ -11,7 +11,7 @@ const usePopup = () => {
       type: "update",
       value: { ...value, popup: popups },
     });
-  }, [popups]);
+  }, [value, popups]);
 
   const isIncludePopup = (popupId) =>
     !popups.every((popup) => popup.id != popupId);
@@ -51,6 +51,7 @@ const usePopup = () => {
     open = false
   ) => {
     const targetPopup = findPopup(popupId);
+    if (!targetPopup) return;
     const { popup, ...rest } = targetPopup;
 
     const newPopup = L.popup(latlng, {

@@ -17,34 +17,37 @@ const Map0203 = () => {
         <h2>02-2 Custom Marker</h2>
         <p>입력받은 아이콘을 토대로 마커를 생성합니다.</p>
       </hgroup>
-      <section style={{ width: "100%", height: "50vh" }}>
-        {!loading && (
-          <MapContainer id={options.toString()} center={position}>
-            <TileLayer
-              id="map_2"
-              url={
-                "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
-              }
-              attribution={"02"}
-            />
-            <CustomMarker
-              id="marker_icon"
-              options={{ iconUrl: icon.file, iconSize: icon.size }}
-              latlng={position}
-            />
-          </MapContainer>
-        )}
-      </section>
-      <section style={{ display: "flex" }}>
-        <IconInput onInput={setIcon} />
-        <div>
-          <p>img:</p>
-          {icon.file && (
-            <img src={icon.file} alt="입력된 아이콘" width={DEFAULT_SIZE} />
+      <div className="layout">
+        <section style={{ width: "100%", height: "50vh" }}>
+          {!loading && (
+            <MapContainer id="map_2" center={position}>
+              <TileLayer
+                id="map_2"
+                url={
+                  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
+                }
+                attribution={"02"}
+              />
+              <CustomMarker
+                id="marker_icon"
+                options={options}
+                latlng={position}
+              />
+            </MapContainer>
           )}
-          <p> size: {icon ? icon.size : DEFAULT_SIZE}</p>
-        </div>
-      </section>
+        </section>
+        <section style={{ flexBasis: `30%` }}>
+          <div>
+            <p>아이콘 미리보기</p>
+            {icon.file ? (
+              <img src={icon.file} alt="입력된 아이콘" width={DEFAULT_SIZE} />
+            ) : (
+              <p>👇아이콘을 추가해주세요</p>
+            )}
+          </div>
+          <IconInput onInput={setIcon} />
+        </section>
+      </div>
     </main>
   );
 };
