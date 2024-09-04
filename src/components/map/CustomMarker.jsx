@@ -19,7 +19,7 @@ const CustomMarker = ({
     : undefined;
 
   useEffect(() => {
-    if (iconUrl) deleteMarker(id);
+    if (iconUrl && isIncludeMarker(id)) deleteMarker(id);
 
     if (isIncludeMarker(id))
       updateMarker(id, [lat, lng], {

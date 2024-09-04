@@ -36,13 +36,15 @@ const useMarker = () => {
 
   const updateMarker = (markerId, [lat, lng], options) => {
     const targetMarker = findMarker(markerId);
+    targetMarker && targetMarker.marker.remove();
+    const otherMarkers = exceptMarkers(markerId);
+    setMarkers([...otherMarkers]);
     const { marker, ...rest } = targetMarker;
     const copyMarker = {
       ...rest,
       marker: L.marker([lat, lng], options),
     };
-    const otherMarkers = exceptMarkers(markerId);
-    setMarkers([...otherMarkers, copyMarker]);
+    setMarkers((prev) => [...prev, copyMarker]);
     return copyMarker;
   };
 

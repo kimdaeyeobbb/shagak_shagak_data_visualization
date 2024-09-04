@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import useMarker from "../../hooks/useMarker";
 
+// eslint-disable-next-line react/prop-types
 const DefaultMarker = ({ latlng: [lat, lng], children, id, ...props }) => {
   const { createMarker, updateMarker, deleteMarker, isIncludeMarker } =
     useMarker();

@@ -40,7 +40,11 @@ const Map0203 = () => {
           <div>
             <p>아이콘 미리보기</p>
             {icon.file ? (
-              <img src={icon.file} alt="입력된 아이콘" width={DEFAULT_SIZE} />
+              <img
+                src={icon.file}
+                alt="입력된 아이콘"
+                width={DEFAULT_SIZE * 3}
+              />
             ) : (
               <p>👇아이콘을 추가해주세요</p>
             )}

@@ -51,6 +51,7 @@ const reducer = (state, action) => {
   return state;
 };
 
+// eslint-disable-next-line react/prop-types
 const MapContainer = ({ center, id = "map", children, ...props }) => {
   const [value, dispatch] = useReducer(reducer, initValue);
 
