@@ -20,16 +20,16 @@ const Map0203 = () => {
       <div className="layout">
         <section style={{ width: "100%", height: "50vh" }}>
           {!loading && (
-            <MapContainer id="map_2" center={position}>
+            <MapContainer id="map_0203" center={position}>
               <TileLayer
-                id="map_2"
+                id="map_0203"
                 url={
                   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
                 }
-                attribution={"02"}
+                attribution={"0203"}
               />
               <CustomMarker
-                id="marker_icon"
+                id="marker_icon_1"
                 options={options}
                 latlng={position}
               />

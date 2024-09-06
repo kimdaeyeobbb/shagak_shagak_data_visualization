@@ -141,14 +141,17 @@ export default usePopup;
         {!loading && (
           <MapContainer center={position}>
             <TileLayer
-              id="map_2"
+              id="map_0202"
               url={
                 "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
               }
-              attribution={"02"}
+              attribution={"0202"}
             />
             <Popup id="popup-1" className="popup" latlng={position} open>
               popup
+            </Popup>
+            <Popup id="popup-2" className="popup" latlng={position}>
+              popup2
             </Popup>
           </MapContainer>
         )}

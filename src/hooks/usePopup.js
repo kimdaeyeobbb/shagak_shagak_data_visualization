@@ -40,7 +40,7 @@ const usePopup = () => {
     setPopups((prev) => [...prev, newPopup]);
 
     if (open) popup.openOn(value.map);
-    return { id: popupId, popup, open };
+    return popup;
   };
 
   const updatePopup = (
@@ -52,20 +52,21 @@ const usePopup = () => {
   ) => {
     const targetPopup = findPopup(popupId);
     if (!targetPopup) return;
+    // eslint-disable-next-line no-unused-vars
     const { popup, ...rest } = targetPopup;
 
     const newPopup = L.popup(latlng, {
       content,
       ...popupoptions,
     });
-
+    //!ssue: maximum callstack
     if (open) newPopup.openOn(value.map);
 
     const copyPopup = { ...rest, open, popup: newPopup };
     const otherPopups = exceptPopups(popupId);
     setPopups([...otherPopups, copyPopup]);
 
-    return copyPopup;
+    return newPopup;
   };
 
   const deletePopup = (popupId) => {

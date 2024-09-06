@@ -3,10 +3,7 @@ import MapContainer from "../../../../components/map/MapContainer";
 import TileLayer from "../../../../components/map/TileLayer";
 import useGeoLocation from "../../../../hooks/useGeoLocation";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-
-const Map0201 = () => {
-  const { loading, position } = useGeoLocation();
-  const code = `import * as L from "leaflet";
+const code = `import * as L from "leaflet";
 import useMap from "./useMap";
 import { useEffect, useState } from "react";
 
@@ -72,6 +69,9 @@ const useMarker = () => {
 
 export default useMarker;
   `;
+const Map0201 = () => {
+  const { loading, position } = useGeoLocation();
+
   return (
     <main>
       <hgroup>
@@ -80,15 +80,15 @@ export default useMarker;
       </hgroup>
       <div style={{ width: `100%`, height: `50vh` }}>
         {!loading && (
-          <MapContainer id="map_2" center={position}>
+          <MapContainer id="map_0201" center={position}>
             <TileLayer
-              id="map_2"
+              id="map_0201"
               url={
                 "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
               }
-              attribution={"02"}
+              attribution={"0201"}
             />
-            <DefaultMarker latlng={position} />
+            <DefaultMarker id="default" latlng={position} />
           </MapContainer>
         )}
       </div>

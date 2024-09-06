@@ -31,9 +31,9 @@ const Map02 = () => {
           </hgroup>
           <section style={{ width: `100%`, height: `50vh` }}>
             {!loading && (
-              <MapContainer id="map_0201" center={position}>
+              <MapContainer id="map_02" center={position}>
                 <TileLayer
-                  id="map_0201"
+                  id="map_02"
                   url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
                 />
                 <DefaultMarker latlng={position} />

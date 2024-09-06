@@ -26,8 +26,6 @@ import Map0202 from "./pages/map/02/02";
 import Map0203 from "./pages/map/02/03";
 import Map0301 from "./pages/map/03/01";
 import Map0302 from "./pages/map/03/02";
-import Map0401 from "./pages/map/04/01";
-import Map0402 from "./pages/map/04/02";
 import Map03 from "./pages/map/03";
 import Map02 from "./pages/map/02";
 import Map04 from "./pages/map/04";
@@ -111,38 +109,34 @@ const router = createBrowserRouter([
         element: <Map />,
         children: [
           {
-            path: "01",
+            path: "01 Map",
             element: <Map01 />,
             children: [
-              { path: "1", element: <Map0101 /> },
-              { path: "2", element: <Map0102 /> },
-              { path: "3", element: <Map0103 /> },
+              { path: "MapContainer", element: <Map0101 /> },
+              { path: "TileLayer", element: <Map0102 /> },
+              { path: "Custom Hooks", element: <Map0103 /> },
             ],
           },
           {
-            path: "02",
+            path: "02 marker",
             element: <Map02 />,
             children: [
-              { path: "1", element: <Map0201 /> },
-              { path: "2", element: <Map0202 /> },
-              { path: "3", element: <Map0203 /> },
+              { path: "Marker", element: <Map0201 /> },
+              { path: "Popup & Tooltip", element: <Map0202 /> },
+              { path: "Custom Marker", element: <Map0203 /> },
             ],
           },
           {
-            path: "03",
+            path: "03 Vector",
             element: <Map03 />,
             children: [
-              { path: "1", element: <Map0301 /> },
+              { path: "Vector", element: <Map0301 /> },
               { path: "2", element: <Map0302 /> },
             ],
           },
           {
-            path: "04",
+            path: "map with CSV",
             element: <Map04 />,
-            children: [
-              { path: "1", element: <Map0401 /> },
-              { path: "2", element: <Map0402 /> },
-            ],
           },
         ],
       },

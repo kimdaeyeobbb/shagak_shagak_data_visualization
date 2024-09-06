@@ -75,3 +75,16 @@
      padding: 0.5rem;
      min-height: 1.5rem;
  }
+
+ table,
+ thead,
+ tbody,
+ tr,
+ th,
+ td {
+     box-sizing: border-box;
+     border: 1px solid #ccc;
+     border-collapse: collapse;
+     min-width: 5rem;
+     padding: 0.5rem;
+ }

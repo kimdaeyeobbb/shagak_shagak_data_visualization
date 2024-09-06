@@ -3,8 +3,12 @@ import TileLayer from "../../../components/map/TileLayer";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import useGeoLocation from "../../../hooks/useGeoLocation";
 import { Outlet, useLocation } from "react-router-dom";
+import FileInput from "../../../components/spread/FileInput";
+import XlsxSheet from "../../../components/spread/XlsxSheet";
+import { useState } from "react";
 
 const Map04 = () => {
+  const [data, setData] = useState([[]]);
   const { loading, position } = useGeoLocation();
   const location = useLocation();
   const path = location.pathname.split("/");
@@ -31,6 +35,8 @@ const Map04 = () => {
             )}
           </div>
           <SyntaxHighlighter language="jsx">{code}</SyntaxHighlighter>
+          <XlsxSheet data={data}></XlsxSheet>
+          <FileInput setData={setData}></FileInput>
         </main>
       )}
     </>

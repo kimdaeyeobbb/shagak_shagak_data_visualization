@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as L from "leaflet";
 import { useEffect } from "react";
 import useMarker from "../../hooks/useMarker";

@@ -39,6 +39,7 @@ const useMarker = () => {
     targetMarker && targetMarker.marker.remove();
     const otherMarkers = exceptMarkers(markerId);
     setMarkers([...otherMarkers]);
+    // eslint-disable-next-line no-unused-vars
     const { marker, ...rest } = targetMarker;
     const copyMarker = {
       ...rest,
