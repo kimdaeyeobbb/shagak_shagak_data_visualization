@@ -150,7 +150,12 @@ export default usePopup;
             <Popup id="popup-1" className="popup" latlng={position} open>
               popup
             </Popup>
-            <Popup id="popup-2" className="popup" latlng={position}>
+            <Popup
+              id="popup-2"
+              className="popup"
+              latlng={[position[0] + 0.005, position[1] + 0.005]}
+              open
+            >
               popup2
             </Popup>
           </MapContainer>

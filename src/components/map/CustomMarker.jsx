@@ -1,44 +1,64 @@
 /* eslint-disable react/prop-types */
 import * as L from "leaflet";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useMarker from "../../hooks/useMarker";
+import Popup from "./Popup";
+import useMapEvent from "../../hooks/useMapEvent";
 
-const CustomMarker = ({
-  latlng: [lat, lng],
-  options: { iconUrl, iconSize, ...rest },
-  children,
-  id,
-  ...props
-}) => {
-  const { createMarker, updateMarker, deleteMarker, isIncludeMarker } =
-    useMarker();
+const CustomMarker = ({ latlng, options, children, id, ...props }) => {
+  const {
+    createMarker,
+    updateMarker,
+    deleteMarker,
+    isIncludeMarker,
+    useMarkerEvent,
+  } = useMarker();
+  const { iconUrl, iconSize, ...rest } = options;
+  const [open, setOpen] = useState(false);
   const Icon = L.icon({ iconUrl, iconSize });
+  const Latlng = L.latLng(latlng);
   const markerOptions = iconUrl
     ? { ...rest, icon: Icon }
     : rest
     ? { ...rest }
     : undefined;
-
   useEffect(() => {
-    if (iconUrl && isIncludeMarker(id)) deleteMarker(id);
-
-    if (isIncludeMarker(id))
-      updateMarker(id, [lat, lng], {
+    if (isIncludeMarker(id)) {
+      updateMarker(id, Latlng, {
         ...markerOptions,
       });
-    else
-      createMarker(id, [lat, lng], {
+    } else {
+      createMarker(id, Latlng, {
         ...markerOptions,
       });
-
+    }
     return () => {
       deleteMarker(id);
     };
-  }, [iconUrl]);
+  }, [options]);
 
+  useMapEvent(
+    "popupclose",
+    () => {
+      setOpen(false);
+    },
+    []
+  );
+
+  useMarkerEvent(
+    "click",
+    () => {
+      setOpen(true);
+    },
+    [options]
+  );
   return (
     <b className="a11y-hidden" {...props}>
-      {children}
+      {children && (
+        <Popup id={id} latlng={Latlng} open={open}>
+          {children}
+        </Popup>
+      )}
     </b>
   );
 };

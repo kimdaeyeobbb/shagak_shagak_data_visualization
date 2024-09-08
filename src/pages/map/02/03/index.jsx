@@ -1,16 +1,29 @@
 import "../../../../styles/map.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MapContainer from "../../../../components/map/MapContainer";
 import TileLayer from "../../../../components/map/TileLayer";
 import useGeoLocation from "../../../../hooks/useGeoLocation";
 import IconInput from "../../../../components/map/IconInput";
 import CustomMarker from "../../../../components/map/CustomMarker";
+
 const DEFAULT_SIZE = 24;
 const Map0203 = () => {
   const { loading, position } = useGeoLocation();
-  const [icon, setIcon] = useState({ file: "", size: DEFAULT_SIZE });
-  const options = { iconUrl: icon.file, iconSize: icon.size };
-
+  const [icon, setIcon] = useState({
+    file: "",
+    size: [DEFAULT_SIZE, DEFAULT_SIZE],
+  });
+  const [options, setOptions] = useState({
+    iconUrl: icon.file,
+    iconSize: icon.size,
+  });
+  useEffect(() => {
+    setOptions((prev) => ({
+      ...prev,
+      iconUrl: icon.file,
+      iconSize: icon.size,
+    }));
+  }, [icon]);
   return (
     <main>
       <hgroup>
@@ -32,7 +45,9 @@ const Map0203 = () => {
                 id="marker_icon_1"
                 options={options}
                 latlng={position}
-              />
+              >
+                popup
+              </CustomMarker>
             </MapContainer>
           )}
         </section>

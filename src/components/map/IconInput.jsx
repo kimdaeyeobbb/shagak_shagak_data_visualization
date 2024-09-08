@@ -2,10 +2,13 @@ import { useState } from "react";
 const DEFAULT_SIZE = 24;
 // eslint-disable-next-line react/prop-types
 const IconInput = ({ onInput }) => {
-  const [icon, setIcon] = useState({ size: DEFAULT_SIZE, file: "" });
+  const [icon, setIcon] = useState({
+    size: [DEFAULT_SIZE, DEFAULT_SIZE],
+    file: "",
+  });
 
   const handleChangeSize = (e) => {
-    setIcon((prev) => ({ ...prev, size: e.target.value }));
+    setIcon((prev) => ({ ...prev, size: [e.target.value, e.target.value] }));
   };
   const handleInputIcon = (e) => {
     const target = e.target.files[0];
