@@ -5,7 +5,7 @@ import useMarker from "../../hooks/useMarker";
 import Popup from "./Popup";
 import useMapEvent from "../../hooks/useMapEvent";
 
-const CustomMarker = ({ latlng, options, children, id, ...props }) => {
+const CustomMarker = ({ latlng, options, children, id, tooltip, ...props }) => {
   const {
     createMarker,
     updateMarker,
@@ -36,7 +36,6 @@ const CustomMarker = ({ latlng, options, children, id, ...props }) => {
       deleteMarker(id);
     };
   }, [options]);
-
   useMapEvent(
     "popupclose",
     () => {
@@ -51,6 +50,13 @@ const CustomMarker = ({ latlng, options, children, id, ...props }) => {
       setOpen(true);
     },
     [options]
+  );
+  useMarkerEvent(
+    "mouseover",
+    (e) => {
+      tooltip && e.target.bindTooltip(tooltip);
+    },
+    [tooltip]
   );
   return (
     <b className="a11y-hidden" {...props}>
