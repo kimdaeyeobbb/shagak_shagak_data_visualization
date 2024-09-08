@@ -1,11 +1,17 @@
 import useGeoLocation from "../../../../hooks/useGeoLocation";
 import MapContainer from "../../../../components/map/MapContainer";
 import TileLayer from "../../../../components/map/TileLayer";
+import Button from "../../../../components/map/Button";
+import { useState } from "react";
 import VectorLayer from "../../../../components/map/VectorLayer";
 
 const Map0301 = () => {
   const { loading, position } = useGeoLocation();
+  const [shape, setShape] = useState("");
 
+  const handleClickButton = (e) => {
+    setShape(e.target.innerText);
+  };
   return (
     <main>
       <section style={{ width: `100%`, height: `50vh` }}>
@@ -16,10 +22,22 @@ const Map0301 = () => {
               url={"https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
               attribution={"01"}
             />
-            <VectorLayer></VectorLayer>
+            <VectorLayer shape={shape} />
           </MapContainer>
         )}
       </section>
+
+      <seciton>
+        <p>현재 도형: {shape}</p>
+        <Button onClick={handleClickButton}>path</Button>
+        <Button onClick={handleClickButton}>polyline</Button>
+        <Button onClick={handleClickButton}>polygon</Button>
+        <Button onClick={handleClickButton}>rectangle</Button>
+        <Button onClick={handleClickButton}>circle</Button>
+        <Button onClick={handleClickButton}>circleMarker</Button>
+        <Button onClick={handleClickButton}>svg</Button>
+        <Button onClick={handleClickButton}>canvas</Button>
+      </seciton>
     </main>
   );
 };

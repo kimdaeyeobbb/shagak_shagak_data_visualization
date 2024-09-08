@@ -3,6 +3,7 @@ import TileLayer from "../../../components/map/TileLayer";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import useGeoLocation from "../../../hooks/useGeoLocation";
 import { Outlet, useLocation } from "react-router-dom";
+import VectorLayer from "../../../components/map/VectorLayer";
 
 const Map03 = () => {
   const { loading, position } = useGeoLocation();
@@ -27,6 +28,7 @@ const Map03 = () => {
                   url={"https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
                   attribution={"01"}
                 />
+                <VectorLayer></VectorLayer>
               </MapContainer>
             )}
           </div>
