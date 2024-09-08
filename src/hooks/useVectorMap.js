@@ -29,25 +29,26 @@ const useVectorMap = () => {
 
   const createVector = (shape, data, options = {}) => {
     const id = Date.now();
-    const newVector = { id, vector: L[shape](data, options) };
+    const newVector = { id, shape, vector: L[shape](data, options) };
 
     setVector(newVector.vector);
     setVectors((prev) => [...prev, { id, vector: newVector }]);
     return newVector;
   };
 
-  const drawVector = ({ id: _, vector: target }) => {
+  const drawVector = ({ vector: target }) => {
     if (!target) return;
     target.addTo(map);
   };
 
-  const updateVector = ({ id, vector: newVector }) => {
+  const updateVector = ({ id, shape: newShape, vector: newVector }) => {
     const targetVector = findVector(id);
     targetVector.vector = newVector;
+    targetVector.shape = newShape;
     const otherVectors = exceptVectors(id);
 
-    setVector(targetVector.vector);
     setVectors([...otherVectors, targetVector]);
+    setVector(null);
 
     return targetVector;
   };
@@ -66,9 +67,7 @@ const useVectorMap = () => {
   };
   const zoomCurrentVector = (vectors) => {
     // 지도의 뷰를 벡터의 범위에 맞게 조정
-    const bounds = L.latLngBounds(
-      vectors.flatMap((vec) => vec.vector.getLatLngs())
-    );
+    const bounds = L.latLngBounds(vectors.vector.getLatLngs());
     map.fitBounds(bounds);
   };
 
