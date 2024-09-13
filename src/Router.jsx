@@ -29,6 +29,11 @@ import Map0302 from "./pages/map/03/02";
 import Map03 from "./pages/map/03";
 import Map02 from "./pages/map/02";
 import Map04 from "./pages/map/04";
+import FillRect from "./pages/canvas/FillRect";
+import BeginPath from "./pages/canvas/BeginPath";
+import Triangle from "./pages/canvas/Triangle";
+import Sin from "./pages/canvas/Sin";
+import SunriseSunset from "./pages/canvas/SunriseSunset";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +43,28 @@ const router = createBrowserRouter([
       {
         path: "canvas",
         element: <Canvas />,
-        children: [{}],
+        children: [
+          {
+            path: "FillRect",
+            element: <FillRect />,
+          },
+          {
+            path: "BeginPath",
+            element: <BeginPath />,
+          },
+          {
+            path: "Triangle",
+            element: <Triangle />,
+          },
+          {
+            path: "Sin",
+            element: <Sin />,
+          },
+          {
+            path: "Sunrise_Sunset",
+            element: <SunriseSunset />,
+          },
+        ],
       },
       {
         path: "chartjs",
