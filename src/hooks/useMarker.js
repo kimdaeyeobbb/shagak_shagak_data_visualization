@@ -13,7 +13,7 @@ const useMarker = () => {
       type: "update",
       value: { ...value, marker: markers },
     });
-  }, [markers, value]);
+  }, [dispatch, markers, value]);
 
   const isIncludeMarker = (markerId) =>
     !currentMarkers.every((marker) => marker.id != markerId);
@@ -44,7 +44,6 @@ const useMarker = () => {
       return;
     }
 
-    console.log("update", marker);
     const targetMarker = findMarker(markerId);
     const { marker: prevMarker, ...rest } = targetMarker;
     // 마커의 위치(latlng)를 업데이트
@@ -54,7 +53,6 @@ const useMarker = () => {
     if (options?.icon) {
       prevMarker.setIcon(options.icon);
     }
-
     const copyMarker = {
       ...rest,
       marker: prevMarker,

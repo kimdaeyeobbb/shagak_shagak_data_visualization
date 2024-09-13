@@ -6,7 +6,7 @@ import useMarker from "../../hooks/useMarker";
 
 const CustomMarker = ({
   latlng,
-  options,
+  options = {},
   children,
   id,
   tooltip,
@@ -49,7 +49,7 @@ const CustomMarker = ({
     return () => {
       deleteMarker(id);
     };
-  }, [options]);
+  }, [latlng]);
 
   useEffect(() => {
     if (currentMarker && markerRef.current) {
@@ -72,7 +72,7 @@ const CustomMarker = ({
       if (showPopup) e.target.openPopup();
       onClick && onClick(e);
     },
-    [options]
+    [latlng]
   );
 
   useMapEvent(
@@ -81,7 +81,7 @@ const CustomMarker = ({
       setShowPopup(false);
       e.target._popup.closePopup();
     },
-    [options]
+    [latlng]
   );
 
   return (

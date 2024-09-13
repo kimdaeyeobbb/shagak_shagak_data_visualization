@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { isObject } from "chart.js/helpers";
+import { createContext, useContext } from "react";
 import * as XLSX from "xlsx-js-style";
 
 const TableContext = createContext(null);
@@ -21,7 +22,7 @@ const Head = ({ data }) => {
     if (isEmptyCell(d)) {
       colspan++;
     } else {
-      dataList[idx] = [d, ++colspan];
+      dataList[idx] = [d, colspan];
       colspan = 1;
     }
   });
@@ -62,8 +63,8 @@ const Body = ({ data }) => {
     </tr>
   );
 };
-// eslint-disable-next-line react/prop-types
 
+// eslint-disable-next-line react/prop-types
 const XlsxSheet = ({ data, ...props }) => {
   const sheetData = XLSX.utils.sheet_to_json(data);
   const maxRows = sheetData[sheetData.length - 1]
@@ -85,19 +86,23 @@ const XlsxSheet = ({ data, ...props }) => {
   const fitRowNum = (sheetData, maxRows) => {
     const newData = Array(maxRows).fill([]);
     sheetData.forEach((data) => {
-      const currentRow = data["__rowNum__"];
+      // eslint-disable-next-line react/prop-types
+      const currentRow = data.__rowNum__;
       newData[currentRow] = data;
     });
     return newData;
   };
 
   const newData = fitRowNum(sheetData, maxRows);
+
+  const filtedData = newData.filter((d) => isObject(d));
+
   return (
     <TableContext.Provider value={value}>
       <table {...props}>
-        <Head data={newData[0]} />
+        <Head data={filtedData[0]} />
         <tbody>
-          {newData.map((item, idx) => (
+          {filtedData.map((item, idx) => (
             <Body key={"td" + idx} data={item} />
           ))}
         </tbody>
