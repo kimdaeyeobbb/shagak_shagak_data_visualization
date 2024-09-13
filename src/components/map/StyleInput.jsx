@@ -25,12 +25,11 @@ const StyleInput = ({ setStyle }) => {
 
   const handleChangeInput = (e) => {
     const currentType = e.target.name;
+    let currentValue = e.target.value;
 
     if (currentType === "stroke" || currentType === "fill") {
-      const checked = e.target.checked;
-      e.target.value = checked;
+      currentValue = e.target.checked;
     }
-    const currentValue = e.target.value;
     setStyles((prev) => ({ ...prev, [currentType]: currentValue }));
   };
 
@@ -40,9 +39,8 @@ const StyleInput = ({ setStyle }) => {
         <input
           type="checkbox"
           name="stroke"
-          onClick={handleChangeInput}
+          onChange={handleChangeInput}
           checked={style.stroke}
-          value={style.stroke}
         />{" "}
         stroke
       </label>
@@ -100,9 +98,8 @@ const StyleInput = ({ setStyle }) => {
         <input
           type="checkbox"
           name="fill"
-          onClick={handleChangeInput}
+          onChange={handleChangeInput}
           checked={style.fill}
-          value={style.fill}
         />{" "}
         fill
       </label>

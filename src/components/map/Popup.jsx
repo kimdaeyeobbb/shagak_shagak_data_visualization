@@ -1,24 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import usePopup from "../../hooks/usePopup";
 
 // eslint-disable-next-line react/prop-types
 const Popup = ({ id, latlng, children, popupoptions = {}, open, ...props }) => {
   const { createPopup, updatePopup, deletePopup, isIncludePopup } = usePopup();
 
+  const popupRef = useRef(null);
+
   useEffect(() => {
+    if (!popupRef.current) return;
+    const content = popupRef.current;
     if (isIncludePopup(id))
-      updatePopup(id, latlng, children, popupoptions, open);
-    else createPopup(id, latlng, children, popupoptions, open);
+      updatePopup(id, latlng, content, popupoptions, open);
+    else createPopup(id, latlng, content, popupoptions, open);
 
     return () => {
       deletePopup(id);
     };
-  }, [open]);
+  }, [open, id, popupRef]);
 
   return (
-    <b className="a11y-hidden" {...props}>
+    <dialog {...props} ref={popupRef}>
       {children}
-    </b>
+    </dialog>
   );
 };
 

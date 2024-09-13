@@ -28,7 +28,7 @@ const Map03 = () => {
                   url={"https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
                   attribution={"01"}
                 />
-                <VectorLayer></VectorLayer>
+                <VectorLayer shape={"polygon"}></VectorLayer>
               </MapContainer>
             )}
           </div>

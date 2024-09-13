@@ -17,22 +17,18 @@ const useVectorMap = () => {
   const { value } = useMap();
   const { map } = value;
 
-  const [vector, setVector] = useState(null);
   const [vectors, setVectors] = useState([]);
 
   const findVector = (vectorId) =>
-    vectors.filter((vec) => vec.id === vectorId)[0];
+    vectors.filter(({ vector }) => vector.options.id === vectorId)[0];
   const isIncludeVector = (vectorId) =>
-    !vectors.every((vec) => vec.id !== vectorId);
+    !vectors.every(({ vector }) => vector.options.id !== vectorId);
   const exceptVectors = (vectorId) =>
-    vectors.filter((vec) => vec.id !== vectorId);
+    vectors.filter(({ vector }) => vector.options.id !== vectorId);
 
-  const createVector = (shape, data, options = {}) => {
-    const id = Date.now();
-    const newVector = { id, shape, vector: L[shape](data, options) };
-
-    setVector(newVector.vector);
-    setVectors((prev) => [...prev, { id, vector: newVector }]);
+  const createVector = (shape, data, options = { id: Date.now() }) => {
+    const newVector = { shape, vector: L[shape](data, options) };
+    setVectors((prev) => [...prev, newVector]);
     return newVector;
   };
 
@@ -41,22 +37,21 @@ const useVectorMap = () => {
     target.addTo(map);
   };
 
-  const updateVector = ({ id, shape: newShape, vector: newVector }) => {
+  const updateVector = ({ vector: newVector }, position) => {
+    const id = newVector.options.id;
     const targetVector = findVector(id);
     targetVector.vector = newVector;
-    targetVector.shape = newShape;
+    targetVector.vector.addLatLng(...position);
     const otherVectors = exceptVectors(id);
 
     setVectors([...otherVectors, targetVector]);
-    setVector(null);
 
     return targetVector;
   };
 
-  const removeVector = ({ id, vector: target }) => {
+  const removeVector = ({ vector: target }) => {
     if (!target) return;
-    const otherVectors = exceptVectors(id);
-    setVectors([...otherVectors]);
+    setVectors(exceptVectors(target.options.id));
     target.remove();
   };
 
@@ -70,15 +65,14 @@ const useVectorMap = () => {
     const bounds = L.latLngBounds(vectors.vector.getLatLngs());
     map.fitBounds(bounds);
   };
-
-  const useVectorEvent = (event, callback, array = []) => {
+  const useVectorEvent = (event, callback, dependencies = []) => {
     useEffect(() => {
-      if (!vector) return;
-      vector.on(event, callback);
+      if (!vectors.length) return;
+      vectors.forEach(({ vector }) => vector.on(event, callback));
       return () => {
-        vector.off(event, callback);
+        vectors.forEach(({ vector }) => vector.off(event, callback));
       };
-    }, [value, vector, ...array]);
+    }, [callback, event, ...dependencies]);
   };
 
   return {

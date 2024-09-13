@@ -1,11 +1,19 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useRef, useState } from "react";
 import * as L from "leaflet";
-import { useEffect, useState } from "react";
-import useMarker from "../../hooks/useMarker";
-import Popup from "./Popup";
 import useMapEvent from "../../hooks/useMapEvent";
+import useMarker from "../../hooks/useMarker";
 
-const CustomMarker = ({ latlng, options, children, id, tooltip, ...props }) => {
+const CustomMarker = ({
+  latlng,
+  options,
+  children,
+  id,
+  tooltip,
+  onClick,
+  openPopup,
+  ...props
+}) => {
   const {
     createMarker,
     updateMarker,
@@ -13,8 +21,13 @@ const CustomMarker = ({ latlng, options, children, id, tooltip, ...props }) => {
     isIncludeMarker,
     useMarkerEvent,
   } = useMarker();
+
+  const markerRef = useRef(null);
+  const [currentMarker, setCurrentMarker] = useState(null);
+  const [showPopup, setShowPopup] = useState(openPopup);
+
   const { iconUrl, iconSize, ...rest } = options;
-  const [open, setOpen] = useState(false);
+
   const Icon = L.icon({ iconUrl, iconSize });
   const Latlng = L.latLng(latlng);
   const markerOptions = iconUrl
@@ -22,6 +35,7 @@ const CustomMarker = ({ latlng, options, children, id, tooltip, ...props }) => {
     : rest
     ? { ...rest }
     : undefined;
+
   useEffect(() => {
     if (isIncludeMarker(id)) {
       updateMarker(id, Latlng, {
@@ -36,21 +50,13 @@ const CustomMarker = ({ latlng, options, children, id, tooltip, ...props }) => {
       deleteMarker(id);
     };
   }, [options]);
-  useMapEvent(
-    "popupclose",
-    () => {
-      setOpen(false);
-    },
-    []
-  );
 
-  useMarkerEvent(
-    "click",
-    () => {
-      setOpen(true);
-    },
-    [options]
-  );
+  useEffect(() => {
+    if (currentMarker && markerRef.current) {
+      currentMarker.bindPopup(markerRef.current);
+    }
+  }, [currentMarker, markerRef]);
+
   useMarkerEvent(
     "mouseover",
     (e) => {
@@ -58,13 +64,29 @@ const CustomMarker = ({ latlng, options, children, id, tooltip, ...props }) => {
     },
     [tooltip]
   );
+  useMarkerEvent(
+    "click",
+    (e) => {
+      setCurrentMarker(e.target);
+      setShowPopup(true);
+      if (showPopup) e.target.openPopup();
+      onClick && onClick(e);
+    },
+    [options]
+  );
+
+  useMapEvent(
+    "popupclose",
+    (e) => {
+      setShowPopup(false);
+      e.target._popup.closePopup();
+    },
+    [options]
+  );
+
   return (
-    <b className="a11y-hidden" {...props}>
-      {children && (
-        <Popup id={id} latlng={Latlng} open={open}>
-          {children}
-        </Popup>
-      )}
+    <b {...props} ref={markerRef}>
+      {children}
     </b>
   );
 };

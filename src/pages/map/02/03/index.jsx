@@ -17,6 +17,7 @@ const Map0203 = () => {
     iconUrl: icon.file,
     iconSize: icon.size,
   });
+
   useEffect(() => {
     setOptions((prev) => ({
       ...prev,
@@ -47,7 +48,7 @@ const Map0203 = () => {
                 latlng={position}
                 tooltip={"tootltip"}
               >
-                popup
+                <div>popup</div>
               </CustomMarker>
             </MapContainer>
           )}

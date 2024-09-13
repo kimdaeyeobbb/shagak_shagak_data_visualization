@@ -47,7 +47,7 @@ const usePopup = () => {
     }
     const newPopup = {
       id: popupId,
-      popup: L.popup(popupoptions).setLatLng(latlng).setContent(content),
+      popup: L.popup({ ...popupoptions, content }).setLatLng(latlng),
       open,
     };
     setPopup(newPopup.popup);
@@ -67,11 +67,13 @@ const usePopup = () => {
     if (!targetPopup) return;
     // eslint-disable-next-line no-unused-vars
     const { popup, ...rest } = targetPopup;
-
     const copyPopup = {
       ...rest,
       open,
-      popup: L.popup(popupoptions).setLatLng(latlng).setContent(content),
+      popup: L.popup({
+        ...popupoptions,
+        content,
+      }).setLatLng(latlng),
     };
     const otherPopups = exceptPopups(popupId);
 

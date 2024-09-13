@@ -49,7 +49,7 @@ const IconInput = ({ onInput }) => {
       </label>
       <label>
         size:{" "}
-        <input type="number" value={icon.size} onChange={handleChangeSize} />
+        <input type="number" value={icon.size[0]} onChange={handleChangeSize} />
       </label>
       <button type="submit">새로운 아이콘 추가하기</button>
     </form>
