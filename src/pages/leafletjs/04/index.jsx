@@ -17,6 +17,7 @@ const Map04 = () => {
   const [markers, setMarkers] = useState([[]]);
   const location = useLocation();
   const path = location.pathname.split("/");
+
   useEffect(() => {
     if (loading || !position) return;
 
@@ -34,6 +35,7 @@ const Map04 = () => {
     const rows = markers.map((item) => Object.values(item));
     return [titleKeys, ...rows];
   }, [markers]);
+
   useEffect(() => {
     if (!markers.length) return;
 

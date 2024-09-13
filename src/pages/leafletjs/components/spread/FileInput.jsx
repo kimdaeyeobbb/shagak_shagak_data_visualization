@@ -17,9 +17,9 @@ function FileInput({ setData }) {
   };
 
   return (
-    <div>
+    <form>
       <input type="file" onChange={handleFileUpload} />
-    </div>
+    </form>
   );
 }
 
