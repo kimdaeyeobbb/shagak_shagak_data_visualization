@@ -1,10 +1,10 @@
 import "../../../styles/map.css";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import MapContainer from "../../../components/map/MapContainer";
-import TileLayer from "../../../components/map/TileLayer";
-import DefaultMarker from "../../../components/map/DefaultMarker";
-import useGeoLocation from "../../../hooks/useGeoLocation";
+import MapContainer from "../components/map/MapContainer";
+import TileLayer from "../components/map/TileLayer";
+import DefaultMarker from "../components/map/DefaultMarker";
+import useGeoLocation from "../hooks/useGeoLocation";
 import { Outlet, useLocation } from "react-router-dom";
 const Map02 = () => {
   const { loading, position } = useGeoLocation();

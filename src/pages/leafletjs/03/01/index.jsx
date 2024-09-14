@@ -1,10 +1,10 @@
-import useGeoLocation from "../../../../hooks/useGeoLocation";
-import MapContainer from "../../../../components/map/MapContainer";
-import TileLayer from "../../../../components/map/TileLayer";
-import Button from "../../../../components/map/Button";
+import useGeoLocation from "../../hooks/useGeoLocation";
+import MapContainer from "../../components/map/MapContainer";
+import TileLayer from "../../components/map/TileLayer";
+import Button from "../../components/map/Button";
 import { useState } from "react";
-import VectorLayer from "../../../../components/map/VectorLayer";
-import StyleInput from "../../../../components/map/StyleInput";
+import VectorLayer from "../../components/map/VectorLayer";
+import StyleInput from "../../components/map/StyleInput";
 
 const Map0301 = () => {
   const { loading, position } = useGeoLocation();

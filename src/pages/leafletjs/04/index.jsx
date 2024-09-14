@@ -1,14 +1,14 @@
-import MapContainer from "../../../components/map/MapContainer";
-import TileLayer from "../../../components/map/TileLayer";
-import useGeoLocation from "../../../hooks/useGeoLocation";
+import MapContainer from "../components/map/MapContainer";
+import TileLayer from "../components/map/TileLayer";
+import useGeoLocation from "../hooks/useGeoLocation";
 import { Outlet, useLocation } from "react-router-dom";
-import FileInput from "../../../components/spread/FileInput";
-import XlsxSheet from "../../../components/spread/XlsxSheet";
+import FileInput from "../components/spread/FileInput";
+import XlsxSheet from "../components/spread/XlsxSheet";
 import { useEffect, useMemo, useState } from "react";
-import FileExport from "../../../components/spread/FileExport";
+import FileExport from "../components/spread/FileExport";
 
 import * as XLSX from "xlsx-js-style";
-import CustomMarker from "../../../components/map/CustomMarker";
+import CustomMarker from "../components/map/CustomMarker";
 
 const Map04 = () => {
   const { loading, position } = useGeoLocation();

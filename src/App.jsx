@@ -1,7 +1,7 @@
 import "./App.css";
 import { Outlet } from "react-router-dom";
-import Lnb from "./components/Lnb";
 import { getRoutes } from "./utils/getRoutes";
+import Lnb from "./components/Lnb";
 
 function App() {
   const routes = getRoutes();

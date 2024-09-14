@@ -1,8 +1,8 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import "../../../styles/map.css";
-import MapContainer from "../../../components/map/MapContainer";
-import TileLayer from "../../../components/map/TileLayer";
-import useGeoLocation from "../../../hooks/useGeoLocation";
+import MapContainer from "../components/map/MapContainer";
+import TileLayer from "../components/map/TileLayer";
+import useGeoLocation from "../hooks/useGeoLocation";
 import { Outlet, useLocation } from "react-router-dom";
 const Map01 = () => {
   const { loading, position } = useGeoLocation();

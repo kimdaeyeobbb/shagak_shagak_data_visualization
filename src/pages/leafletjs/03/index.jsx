@@ -1,9 +1,9 @@
-import MapContainer from "../../../components/map/MapContainer";
-import TileLayer from "../../../components/map/TileLayer";
+import MapContainer from "../components/map/MapContainer";
+import TileLayer from "../components/map/TileLayer";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import useGeoLocation from "../../../hooks/useGeoLocation";
+import useGeoLocation from "../hooks/useGeoLocation";
 import { Outlet, useLocation } from "react-router-dom";
-import VectorLayer from "../../../components/map/VectorLayer";
+import VectorLayer from "../components/map/VectorLayer";
 
 const Map03 = () => {
   const { loading, position } = useGeoLocation();

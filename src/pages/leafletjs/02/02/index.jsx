@@ -1,7 +1,7 @@
-import MapContainer from "../../../../components/map/MapContainer";
-import Popup from "../../../../components/map/Popup";
-import TileLayer from "../../../../components/map/TileLayer";
-import useGeoLocation from "../../../../hooks/useGeoLocation";
+import MapContainer from "../../components/map/MapContainer";
+import Popup from "../../components/map/Popup";
+import TileLayer from "../../components/map/TileLayer";
+import useGeoLocation from "../../hooks/useGeoLocation";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
 const Map0202 = () => {

@@ -1,7 +1,7 @@
-import DefaultMarker from "../../../../components/map/DefaultMarker";
-import MapContainer from "../../../../components/map/MapContainer";
-import TileLayer from "../../../../components/map/TileLayer";
-import useGeoLocation from "../../../../hooks/useGeoLocation";
+import DefaultMarker from "../../components/map/DefaultMarker";
+import MapContainer from "../../components/map/MapContainer";
+import TileLayer from "../../components/map/TileLayer";
+import useGeoLocation from "../../hooks/useGeoLocation";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 const code = `import * as L from "leaflet";
 import useMap from "./useMap";

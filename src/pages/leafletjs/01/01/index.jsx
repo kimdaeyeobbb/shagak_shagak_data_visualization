@@ -1,7 +1,7 @@
 import "../../../../styles/map.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import useGeoLocation from "../../../../hooks/useGeoLocation";
-import MapContainer from "../../../../components/map/MapContainer";
+import useGeoLocation from "../../hooks/useGeoLocation";
+import MapContainer from "../../components/map/MapContainer";
 
 const code = `import { useEffect, useReducer, useRef, useState } from "react";
   import { LeafletContext } from "../../hooks/useMap";

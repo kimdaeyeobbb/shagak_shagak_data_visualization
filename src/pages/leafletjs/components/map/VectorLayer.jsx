@@ -3,7 +3,7 @@ import useVectorMap from "../../hooks/useVectorMap";
 import useMapEvent from "../../hooks/useMapEvent";
 import Popup from "./Popup";
 import Button from "./Button";
-import "../../styles/map.css";
+import "../../../../styles/map.css";
 
 // eslint-disable-next-line react/prop-types
 const VectorLayer = ({ shape, pathStyle, children }) => {

@@ -1,10 +1,10 @@
 import "../../../../styles/map.css";
 import { useEffect, useState } from "react";
-import MapContainer from "../../../../components/map/MapContainer";
-import TileLayer from "../../../../components/map/TileLayer";
-import useGeoLocation from "../../../../hooks/useGeoLocation";
-import IconInput from "../../../../components/map/IconInput";
-import CustomMarker from "../../../../components/map/CustomMarker";
+import MapContainer from "../../components/map/MapContainer";
+import TileLayer from "../../components/map/TileLayer";
+import useGeoLocation from "../../hooks/useGeoLocation";
+import IconInput from "../../components/map/IconInput";
+import CustomMarker from "../../components/map/CustomMarker";
 
 const DEFAULT_SIZE = 24;
 const Map0203 = () => {

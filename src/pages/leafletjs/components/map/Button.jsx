@@ -1,4 +1,4 @@
-import "../../styles/map.css";
+import "../../../../styles/map.css";
 
 /* eslint-disable react/prop-types */
 const Button = ({ children, type = "button", ...props }) => {
