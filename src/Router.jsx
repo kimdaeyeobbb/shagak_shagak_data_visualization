@@ -3,7 +3,7 @@ import Canvas from "./pages/canvas";
 import App from "./App";
 import ChartJs from "./pages/chartjs";
 import D3js from "./pages/d3js";
-import Map from "./pages/map";
+import Map from "./pages/leafletjs";
 import AreaChart from "./pages/chartjs/AreaChart";
 import BarChart from "./pages/chartjs/BarChart";
 import BubbleChart from "./pages/chartjs/BubbleChart";
@@ -17,122 +17,121 @@ import PieChart from "./pages/chartjs/PieChart";
 import PolarAreaChart from "./pages/chartjs/PolarAreaChart";
 import RadarChart from "./pages/chartjs/RadarChart";
 import ScatterChart from "./pages/chartjs/ScatterChart";
-import Map01 from "./pages/map/01";
-import Map0101 from "./pages/map/01/01";
-import Map0102 from "./pages/map/01/02";
-import Map0103 from "./pages/map/01/03";
-import Map0201 from "./pages/map/02/01";
-import Map0202 from "./pages/map/02/02";
-import Map0203 from "./pages/map/02/03";
-import Map0301 from "./pages/map/03/01";
-import Map0302 from "./pages/map/03/02";
-import Map03 from "./pages/map/03";
-import Map02 from "./pages/map/02";
-import Map04 from "./pages/map/04";
-import FillRect from './pages/canvas/FillRect';
-import BeginPath from './pages/canvas/BeginPath';
-import Triangle from './pages/canvas/Triangle';
-import Sin from './pages/canvas/Sin';
-import SunriseSunset from './pages/canvas/SunriseSunset';
-
+import Map01 from "./pages/leafletjs/01";
+import Map0101 from "./pages/leafletjs/01/01";
+import Map0102 from "./pages/leafletjs/01/02";
+import Map0103 from "./pages/leafletjs/01/03";
+import Map0201 from "./pages/leafletjs/02/01";
+import Map0202 from "./pages/leafletjs/02/02";
+import Map0203 from "./pages/leafletjs/02/03";
+import Map0301 from "./pages/leafletjs/03/01";
+import Map0302 from "./pages/leafletjs/03/02";
+import Map03 from "./pages/leafletjs/03";
+import Map02 from "./pages/leafletjs/02";
+import Map04 from "./pages/leafletjs/04";
+import FillRect from "./pages/canvas/FillRect";
+import BeginPath from "./pages/canvas/BeginPath";
+import Triangle from "./pages/canvas/Triangle";
+import Sin from "./pages/canvas/Sin";
+import SunriseSunset from "./pages/canvas/SunriseSunset";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     children: [
       {
-        path: 'canvas',
+        path: "canvas",
         element: <Canvas />,
         children: [
           {
-            path: 'FillRect',
+            path: "FillRect",
             element: <FillRect />,
           },
           {
-            path: 'BeginPath',
+            path: "BeginPath",
             element: <BeginPath />,
           },
           {
-            path: 'Triangle',
+            path: "Triangle",
             element: <Triangle />,
           },
           {
-            path: 'Sin',
+            path: "Sin",
             element: <Sin />,
           },
           {
-            path: 'Sunrise_Sunset',
+            path: "Sunrise_Sunset",
             element: <SunriseSunset />,
           },
         ],
       },
       {
-        path: 'chartjs',
+        path: "chartjs",
         element: <ChartJs />,
         children: [
           {
-            path: 'areachart',
+            path: "areachart",
             element: <AreaChart />,
           },
           {
-            path: 'barchart',
+            path: "barchart",
             element: <BarChart />,
           },
           {
-            path: 'bubblechart',
+            path: "bubblechart",
             element: <BubbleChart />,
           },
           {
-            path: 'doughnutpiechart',
+            path: "doughnutpiechart",
             element: <DoughnutPieChart />,
           },
           {
-            path: 'linechart',
+            path: "linechart",
             element: <LineChart />,
           },
           {
-            path: 'mbti',
+            path: "mbti",
             element: <MBTI />,
           },
           {
-            path: 'mixedchart',
+            path: "mixedchart",
             element: <MixedChart />,
           },
           {
-            path: 'olympic',
+            path: "olympic",
             element: <Olympic />,
           },
           {
-            path: 'piechart',
+            path: "piechart",
             element: <PieChart />,
           },
           {
-            path: 'polarareachart',
+            path: "polarareachart",
             element: <PolarAreaChart />,
           },
           {
-            path: 'radarchart',
+            path: "radarchart",
             element: <RadarChart />,
           },
           {
-            path: 'scatterchart',
+            path: "scatterchart",
             element: <ScatterChart />,
           },
         ],
       },
       {
-        path: 'd3js',
+        path: "d3js",
         element: <D3js />,
         children: [
           {
-            path: 'ex1',
+            path: "ex1",
             element: <Ex1 />,
           },
         ],
       },
       {
-        path: 'map',
+        path: "map",
         element: <Map />,
         children: [
           {
